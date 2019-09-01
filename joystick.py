@@ -64,7 +64,6 @@ class Joystick():
         # Set ID
         self.__id = identification
         try:
-            pygame.init()  # pylint: disable=no-member
             pygame.joystick.init()
             self.joystick = pygame.joystick.Joystick(self.__id)
             self.joystick.init()
@@ -287,7 +286,6 @@ def detect():
       False: If there is none joystick connected.
       tuple: With a list of joysticks IDs
     """
-    pygame.init()  # pylint: disable=no-member
     pygame.joystick.init()
     count = pygame.joystick.get_count()
     # Create joystick list

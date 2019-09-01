@@ -10,27 +10,24 @@ people:
   - name: Márcio Pessoa
     email: marcio.pessoa@gmail.com
 change-log:
+  2019-09-01
+  - version: 0.2
+    fixed: improved tests
   2019-08-31
   - version: 0.1
     added: timer tests
 """
 
 import sys
-import time
 import json
 import pygame
 from joystick import Joystick, detect
 
 # Detect and initialize joystick
 JOYSTICK = Joystick()
-for _ in range(10):
-    if detect():
-        JOYSTICK.identification(detect()[0])
-        break
-    time.sleep(10 / 1000)
-
-# Exit if no joystick connected
-if JOYSTICK.identification() is None:
+if detect():
+    JOYSTICK.identification(detect()[0])
+else:
     print("Joystick not found.")
     sys.exit(True)
 
@@ -42,21 +39,13 @@ print(json.dumps(JOYSTICK.configuration(),
 
 pygame.init()  # pylint: disable=no-member
 
-# Loop until the user clicks the close button.
-DONE = False
-
 # Used to manage how fast the screen updates.
 CLOCK = pygame.time.Clock()
 
-while not DONE:
+while True:
     # Check user actions
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:  # pylint: disable=no-member
-            DONE = True
-        elif event.type == pygame.KEYDOWN:  # pylint: disable=no-member
-            print("*****************************")
-            DONE = True
-        elif event.type == pygame.JOYAXISMOTION:  # pylint: disable=no-member
+        if event.type == pygame.JOYAXISMOTION:  # pylint: disable=no-member
             print(JOYSTICK.axis())
         elif event.type == pygame.JOYBALLMOTION:  # pylint: disable=no-member
             print(JOYSTICK.ball())
@@ -66,13 +55,7 @@ while not DONE:
             print(JOYSTICK.button())
         elif event.type == pygame.JOYHATMOTION:  # pylint: disable=no-member
             print(JOYSTICK.hat())
-
-
-        print(json.dumps(JOYSTICK.all(),
-                         indent=2,
-                         separators=(", ", ": ")))
-
-    # Limit to 20 frames per second.
-    CLOCK.tick(20)
+    # Limit to 10 frames per second.
+    CLOCK.tick(10)
 
 pygame.quit()  # pylint: disable=no-member
