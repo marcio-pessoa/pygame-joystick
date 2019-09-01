@@ -262,11 +262,12 @@ class Joystick():
           None
 
         return:
+          None: if not initialized
           dict: axis, button, hat and ball status
         """
         # Check if it's initialized
         if not self.__enable:
-            return True
+            return None
         return \
             {
                 'axis': self.axis(),
@@ -292,7 +293,7 @@ def detect():
     joystick_list = []
     for i in range(count):
         joystick_list.append(i)
-    pygame.quit()  # pylint: disable=no-member
+    # pygame.quit()  # pylint: disable=no-member
     if count == 0:
         return False
     return tuple(joystick_list)
