@@ -15,20 +15,10 @@ change-log:
 
 import sys
 import os
-
-# TODO: Remove Python 2 support
-if sys.version_info >= (3, 0):
-    import contextlib
-    with contextlib.redirect_stdout(None):
-        import pygame
-        from pygame.locals import *
-else:
-    with open(os.devnull, 'w') as f:
-        OLDSTDOUT = sys.stdout
-        sys.stdout = f
-        import pygame
-        from pygame.locals import *
-        sys.stdout = OLDSTDOUT
+import contextlib
+with contextlib.redirect_stdout(None):
+    import pygame
+    from pygame.locals import *
 
 
 class Joystick():
