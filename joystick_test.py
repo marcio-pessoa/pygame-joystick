@@ -19,7 +19,6 @@ change-log:
 """
 
 import sys
-import json
 import pygame
 from joystick import Joystick, detect
 
@@ -33,9 +32,7 @@ else:
 
 # Display joystick configuration
 print("Joystick configuration:")
-print(json.dumps(JOYSTICK.configuration(),
-                 indent=2,
-                 separators=(", ", ": ")))
+print(JOYSTICK.configuration())
 
 pygame.init()  # pylint: disable=no-member
 

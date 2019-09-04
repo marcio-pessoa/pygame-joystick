@@ -16,6 +16,7 @@ change-log:
 import sys
 import os
 
+# TODO: Remove Python 2 support
 if sys.version_info >= (3, 0):
     import contextlib
     with contextlib.redirect_stdout(None):
@@ -53,6 +54,7 @@ class Joystick():
         returns:
           False: Initialization OK
           True: Initialization fails
+          None: Not initialized
           int: Joystick ID
         """
         # Return current ID
@@ -293,7 +295,6 @@ def detect():
     joystick_list = []
     for i in range(count):
         joystick_list.append(i)
-    # pygame.quit()  # pylint: disable=no-member
     if count == 0:
         return False
     return tuple(joystick_list)
