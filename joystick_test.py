@@ -4,10 +4,10 @@
 ---
 name: joystick_test.py
 description: Test Joystick package
-copyright: 2019-2019 Márcio Pessoa
+copyright: 2019-2019 Marcio Pessoa
 people:
   developers:
-  - name: Márcio Pessoa
+  - name: Marcio Pessoa
     email: marcio.pessoa@gmail.com
 change-log:
   2019-09-01
