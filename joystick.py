@@ -24,8 +24,10 @@ class Joystick():
     description: Abstration class to manage joysticks with pygame.
     """
 
+    __version__ = 0.1
+
     def __init__(self):
-        self._version = 0.1
+
         self.__enable = False
         self.__speed = 1
         self.__delay = 0
